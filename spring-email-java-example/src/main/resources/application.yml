@@ -1,0 +1,20 @@
+server:
+  port: 9090
+spring:
+  mail:
+    default-encoding: UTF-8
+    host: # for example: smtp.gmail.com
+    username: # Your email
+    password: # Your email pass
+    port: # SMPT port, for exaple: 25, 587
+    properties:
+      mail:
+        transport.protocol: smtp
+# Optional properties
+#        smtp:
+#          ssl:
+#            trust: '*'
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
