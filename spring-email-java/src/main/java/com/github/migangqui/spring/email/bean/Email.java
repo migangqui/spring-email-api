@@ -12,12 +12,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class Email {
-	
 	private String from;
 	private String to;
 	private String subject;
 	private String body;
 	private InputStream file; 
 	private String filename;
-	
 }
