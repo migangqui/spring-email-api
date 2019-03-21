@@ -19,22 +19,23 @@ It is an API to send email with Spring. To add to the project, only do this thin
 
 ```yaml
 spring:
-    mail:
-        default-encoding: UTF-8
-        host: #HOST
-        username: #USERNAME
-        password: #PASS
-        port: 587
-        properties:
-         mail:
-          transport.protocol: smtp
-          smtp:
-            ssl:
-              trust: '*'
-            auth: true
-            starttls:
-              enable: true
-              required: true
+  mail:
+    default-encoding: UTF-8
+    host: # for example: smtp.gmail.com
+    username: # Your email
+    password: # Your email pass
+    port: # SMPT port, for exaple: 25, 587
+    properties:
+      mail:
+        transport.protocol: smtp
+# Optional properties
+#        smtp:
+#          ssl:
+#            trust: '*'
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
 ```
 
 ## Enable async
