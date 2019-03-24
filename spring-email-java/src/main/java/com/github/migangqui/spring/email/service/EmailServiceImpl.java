@@ -19,7 +19,7 @@ import java.util.concurrent.Future;
 
 @Slf4j
 @Service
-public class EmailServiceImpl implements EmailService {
+class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender javaMailSender;
 
@@ -31,11 +31,11 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public SendEmailResult send(Email email) {
         SendEmailResult result;
-        log.info("Sending email to {}", email.getTo());
+        log.info("Sending email");
         try {
             MimeMessage generatedMailMessage = generateMailMessage(email);
             javaMailSender.send(generatedMailMessage);
-            log.debug("Email sent successfully to {}", email.getTo());
+            log.info("Email sent successfully");
             result = SendEmailResult.builder().status(200).build();
         } catch (MessagingException | MailException e) {
             log.warn("An error has ocurred sending email", e);
@@ -55,12 +55,13 @@ public class EmailServiceImpl implements EmailService {
     /* Private methods */
 
     private MimeMessage generateMailMessage(Email email) throws MessagingException {
-        MimeMessage generateMailMessage = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(generateMailMessage, email.getFile() != null);;
+        MimeMessageHelper helper = new MimeMessageHelper(javaMailSender.createMimeMessage(), email.getFile() != null);;
+
         helper.setFrom(new InternetAddress(email.getFrom()));
         helper.setTo(email.getTo());
         helper.setSubject(email.getSubject());
         helper.setText(email.getBody(), true);
+
         if (email.getFile() != null) {
             helper.addAttachment(email.getFilename(), new InputStreamResource(email.getFile()));
         }

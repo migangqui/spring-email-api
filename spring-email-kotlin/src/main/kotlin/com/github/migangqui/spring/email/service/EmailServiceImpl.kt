@@ -17,16 +17,16 @@ import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 
 @Service
-class EmailServiceImpl(private val javaMailSender: JavaMailSender) : EmailService {
+internal class EmailServiceImpl(private val javaMailSender: JavaMailSender) : EmailService {
 
     private val log = KotlinLogging.logger {}
 
     override fun send(email: Email): SendEmailResult {
-        log.info("Sending email to {}", email.to)
+        log.info { "Sending email" }
         return try {
             val generatedMailMessage = generateMailMessage(email)
             javaMailSender.send(generatedMailMessage)
-            log.debug("Email sent successfully to {}", email.to)
+            log.info { "Email sent successfully" }
             SendEmailResult(status = 200)
         } catch (e: MessagingException) {
             log.warn("An error has ocurred sending email", e)
@@ -46,12 +46,13 @@ class EmailServiceImpl(private val javaMailSender: JavaMailSender) : EmailServic
 
     @Throws(MessagingException::class)
     private fun generateMailMessage(email: Email): MimeMessage {
-        val generateMailMessage = javaMailSender.createMimeMessage()
-        val helper = MimeMessageHelper(generateMailMessage, email.file != null)
-        helper.setFrom(InternetAddress(email.from!!))
-        helper.setTo(email.to!!)
+        val helper = MimeMessageHelper(javaMailSender.createMimeMessage(), email.file != null)
+
+        helper.setFrom(InternetAddress(email.from))
+        helper.setTo(email.to)
         helper.setSubject(email.subject!!)
-        helper.setText(email.body!!, true)
+        helper.setText(email.body, true)
+
         if (email.file != null && email.filename != null) {
             helper.addAttachment(email.filename, InputStreamResource(email.file))
         }

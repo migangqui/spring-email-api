@@ -1,4 +1,4 @@
-package com.migangqui.spring.email.java.example;
+package com.github.migangqui.spring.email.java.example;
 
 import com.github.migangqui.spring.email.bean.Email;
 import com.github.migangqui.spring.email.bean.SendEmailResult;
