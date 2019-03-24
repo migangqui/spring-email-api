@@ -1,14 +1,26 @@
-Spring Email API
+Spring Email API (Java/Kotlin)
 ===================
 
-It is an API to send email with Spring. To add to the project, only do this things.
+It is an API for Java and Kotlin to send emails with Spring. To add to the project, only do this things.
 
 ### Add dependency to pom.xml
+
+For Java:
 
 ```xml
 <dependency>
 	<groupId>com.github.migangqui</groupId>
 	<artifactId>spring-email-api-java</artifactId>
+	<version>${currentVersion}</version>
+</dependency>
+```
+
+For Kotlin:
+
+```xml
+<dependency>
+	<groupId>com.github.migangqui</groupId>
+	<artifactId>spring-email-api-kotlin</artifactId>
 	<version>${currentVersion}</version>
 </dependency>
 ```
