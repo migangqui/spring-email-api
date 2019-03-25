@@ -57,3 +57,25 @@ Add ```@EnableAsync``` annotation in your Spring Application class to enable asy
 ## Component scan
 
 You must add in your component scan configuration the package ```com.github.migangqui```.
+
+## How to use
+
+You have to inject ```EmailService``` as dependency in your Spring component. The service provide these methods:
+
+##### Java
+```java
+public interface EmailService {
+    SendEmailResult send(Email emailDTO);
+        
+    Future<SendEmailResult> sendAsync(Email emailDTO);
+}
+```
+##### Kotlin
+```kotlin
+interface AmazonS3Service {
+    fun send(email: Email): SendEmailResult
+
+    fun sendAsync(email: Email): Future<SendEmailResult>
+}
+```
+
