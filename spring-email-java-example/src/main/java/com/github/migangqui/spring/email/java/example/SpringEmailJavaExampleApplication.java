@@ -17,7 +17,6 @@ import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/api/emails")
-@ComponentScan("com.github.migangqui")
 @EnableAsync
 @SpringBootApplication
 public class SpringEmailJavaExampleApplication {

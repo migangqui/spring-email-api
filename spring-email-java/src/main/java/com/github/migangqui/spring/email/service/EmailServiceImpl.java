@@ -2,6 +2,7 @@ package com.github.migangqui.spring.email.service;
 
 import com.github.migangqui.spring.email.bean.SendEmailResult;
 import com.github.migangqui.spring.email.bean.Email;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -18,24 +19,19 @@ import javax.mail.internet.MimeMessage;
 import java.util.concurrent.Future;
 
 @Slf4j
-@Service
-class EmailServiceImpl implements EmailService {
+@RequiredArgsConstructor
+public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender javaMailSender;
-
-    @Autowired
-    public EmailServiceImpl(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
-    }
 
     @Override
     public SendEmailResult send(Email email) {
         SendEmailResult result;
-        log.info("Sending email");
+        log.debug("Sending email");
         try {
             MimeMessage generatedMailMessage = generateMailMessage(email);
             javaMailSender.send(generatedMailMessage);
-            log.info("Email sent successfully");
+            log.debug("Email sent successfully");
             result = SendEmailResult.builder().status(200).build();
         } catch (MessagingException | MailException e) {
             log.warn("An error has ocurred sending email", e);
