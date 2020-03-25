@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.migangqui</groupId>
     <artifactId>spring-email-api-java</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>spring-email</name>
     <description>Java API to send emails in Spring</description>
