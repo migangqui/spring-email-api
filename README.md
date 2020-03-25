@@ -1,5 +1,5 @@
 Spring Email API (Java/Kotlin)
-===================
+==============================
 
 It is an API for Java and Kotlin to send emails with Spring. To add to the project, only do this things.
 
@@ -25,7 +25,7 @@ For Kotlin:
 </dependency>
 ```
 
-```${currentVersion}``` is ```1.0.0```
+```${currentVersion}``` is ```1.0.1```
 
 ### Add the following properties in application.yml of the project
 
@@ -56,7 +56,7 @@ Add ```@EnableAsync``` annotation in your Spring Application class to enable asy
 
 ## Component scan
 
-You must add in your component scan configuration the package ```com.github.migangqui```.
+It's not neccesary add the package to component scan with this new version.
 
 ## How to use
 

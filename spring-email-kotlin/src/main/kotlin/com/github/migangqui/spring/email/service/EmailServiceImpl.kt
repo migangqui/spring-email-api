@@ -16,7 +16,6 @@ import javax.mail.MessagingException
 import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 
-@Service
 internal class EmailServiceImpl(private val javaMailSender: JavaMailSender) : EmailService {
 
     private val log = KotlinLogging.logger {}

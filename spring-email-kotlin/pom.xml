@@ -5,7 +5,7 @@
 
     <groupId>com.github.migangqui</groupId>
     <artifactId>spring-email-api-kotlin</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>spring-email</name>
     <description>Java API to send emails in Spring</description>
