@@ -1,38 +1,35 @@
 package com.github.migangqui.spring.email.service
 
-import com.github.migangqui.spring.email.bean.Email
-import com.github.migangqui.spring.email.bean.SendEmailResult
+import com.github.migangqui.spring.email.model.Email
+import com.github.migangqui.spring.email.model.SendEmailResult
 import mu.KotlinLogging
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.io.InputStreamResource
 import org.springframework.mail.MailException
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.MimeMessageHelper
 import org.springframework.scheduling.annotation.Async
 import org.springframework.scheduling.annotation.AsyncResult
-import org.springframework.stereotype.Service
 import java.util.concurrent.Future
 import javax.mail.MessagingException
 import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 
-internal class EmailServiceImpl(private val javaMailSender: JavaMailSender) : EmailService {
+internal class EmailSenderImpl(private val javaMailSender: JavaMailSender) : EmailSender {
 
     private val log = KotlinLogging.logger {}
 
     override fun send(email: Email): SendEmailResult {
-        log.info { "Sending email" }
+        log.debug { "Sending email" }
         return try {
-            val generatedMailMessage = generateMailMessage(email)
-            javaMailSender.send(generatedMailMessage)
-            log.info { "Email sent successfully" }
+            javaMailSender.send(generateMailMessage(email))
+            log.debug { "Email sent successfully" }
             SendEmailResult(status = 200)
-        } catch (e: MessagingException) {
-            log.warn("An error has ocurred sending email", e)
-            SendEmailResult(status = 500, cause = e.message, exception = e)
-        } catch (e: MailException) {
-            log.warn("An error has ocurred sending email", e)
-            SendEmailResult(status = 500, cause = e.message, exception = e)
+        } catch (exception: MessagingException) {
+            log.warn("An error has occurred sending email", exception)
+            SendEmailResult(status = 500, cause = exception.message, exception = exception)
+        } catch (exception: MailException) {
+            log.warn("An error has occurred sending email", exception)
+            SendEmailResult(status = 500, cause = exception.message, exception = exception)
         }
     }
 

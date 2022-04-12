@@ -1,5 +1,4 @@
-Spring Email Java API
-===================
+# Spring Email Java API
 
 It is an Java API to send email with Spring.
 
@@ -11,4 +10,4 @@ It is an Java API to send email with Spring.
 </dependency>
 ```
 
-```${currentVersion}``` is ```1.0.0```
+```${currentVersion}``` is ```1.1.0```
