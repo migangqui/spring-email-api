@@ -5,7 +5,7 @@ Spring Email API (Java/Kotlin)
 ![Maven Central](https://img.shields.io/maven-central/v/com.github.migangqui/spring-email-api-java?style=for-the-badge)
 
 
-It is an API for Java and Kotlin to send emails with Spring. To add to the project, only do this things.
+It is an API for Java and Kotlin to send emails with Spring. To add to the project, only do these things.
 
 ### Add dependency to pom.xml
 
@@ -60,23 +60,23 @@ Add ```@EnableAsync``` annotation in your Spring Application class to enable asy
 
 ## Component scan
 
-It's not neccesary add the package to component scan with this new version.
+It's not necessary add the package to component scan with this new version.
 
 ## How to use
 
-You have to inject ```EmailService``` as dependency in your Spring component. The service provide these methods:
+You have to inject ```EmailSender``` as dependency in your Spring component. The service provide these methods:
 
 ##### Java
 ```java
-public interface EmailService {
-    SendEmailResult send(Email emailDTO);
+public interface EmailSender {
+    SendEmailResult send(Email email);
         
-    Future<SendEmailResult> sendAsync(Email emailDTO);
+    Future<SendEmailResult> sendAsync(Email email);
 }
 ```
 ##### Kotlin
 ```kotlin
-interface AmazonS3Service {
+interface EmailSender {
     fun send(email: Email): SendEmailResult
 
     fun sendAsync(email: Email): Future<SendEmailResult>
