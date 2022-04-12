@@ -1,7 +1,7 @@
 package com.github.migangqui.spring.email.java.example;
 
-import com.github.migangqui.spring.email.bean.Email;
-import com.github.migangqui.spring.email.bean.SendEmailResult;
+import com.github.migangqui.spring.email.model.Email;
+import com.github.migangqui.spring.email.model.SendEmailResult;
 import com.github.migangqui.spring.email.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;

@@ -1,4 +1,4 @@
-package com.github.migangqui.spring.email.bean
+package com.github.migangqui.spring.email.model
 
 import java.io.InputStream
 
