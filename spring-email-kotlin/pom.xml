@@ -191,11 +191,6 @@
                                 </goals>
                             </execution>
                         </executions>
-                        <configuration>
-                            <includes>
-                                <file>packages.md</file>
-                            </includes>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
