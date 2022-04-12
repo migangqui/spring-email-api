@@ -1,6 +1,10 @@
 Spring Email API (Java/Kotlin)
 ==============================
 
+![GitHub last commit](https://img.shields.io/github/last-commit/migangqui/spring-email-api?style=for-the-badge)
+![Maven Central](https://img.shields.io/maven-central/v/com.github.migangqui/spring-email-api-java?style=for-the-badge)
+
+
 It is an API for Java and Kotlin to send emails with Spring. To add to the project, only do this things.
 
 ### Add dependency to pom.xml
