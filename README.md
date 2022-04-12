@@ -29,7 +29,7 @@ For Kotlin:
 </dependency>
 ```
 
-```${currentVersion}``` is ```1.0.1```
+```${currentVersion}``` is ```1.1.0```
 
 ### Add the following properties in application.yml of the project
 
