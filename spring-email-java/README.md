@@ -10,4 +10,4 @@ It is an Java API to send email with Spring.
 </dependency>
 ```
 
-```${currentVersion}``` is ```1.1.0```
+```${currentVersion}``` is ```1.2.0```

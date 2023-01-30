@@ -2,7 +2,7 @@ package com.github.migangqui.spring.email.service
 
 import com.github.migangqui.spring.email.model.Email
 import com.github.migangqui.spring.email.model.SendEmailResult
-import mu.KotlinLogging
+import org.slf4j.LoggerFactory
 import org.springframework.core.io.InputStreamResource
 import org.springframework.mail.MailException
 import org.springframework.mail.javamail.JavaMailSender
@@ -16,13 +16,13 @@ import javax.mail.internet.MimeMessage
 
 internal class EmailSenderImpl(private val javaMailSender: JavaMailSender) : EmailSender {
 
-    private val log = KotlinLogging.logger {}
+    private val log = LoggerFactory.getLogger(this.javaClass)
 
     override fun send(email: Email): SendEmailResult {
-        log.debug { "Sending email" }
+        log.info("Sending email")
         return try {
             javaMailSender.send(generateMailMessage(email))
-            log.debug { "Email sent successfully" }
+            log.debug("Email sent successfully")
             SendEmailResult(status = 200)
         } catch (exception: MessagingException) {
             log.warn("An error has occurred sending email", exception)
@@ -42,15 +42,15 @@ internal class EmailSenderImpl(private val javaMailSender: JavaMailSender) : Ema
 
     @Throws(MessagingException::class)
     private fun generateMailMessage(email: Email): MimeMessage {
-        val helper = MimeMessageHelper(javaMailSender.createMimeMessage(), email.file != null)
+        val helper = MimeMessageHelper(javaMailSender.createMimeMessage(), email.attachment != null)
 
         helper.setFrom(InternetAddress(email.from))
         helper.setTo(email.to)
         helper.setSubject(email.subject!!)
         helper.setText(email.body, true)
 
-        if (email.file != null && email.filename != null) {
-            helper.addAttachment(email.filename, InputStreamResource(email.file))
+        if (email.attachment != null) {
+            helper.addAttachment(email.attachment.filename, InputStreamResource(email.attachment.file))
         }
         return helper.mimeMessage
     }
